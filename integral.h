@@ -1,3 +1,4 @@
 #pragma once
+#include "main.h"
 
-float integral(float (*f)(float), float a, float b, float eps2);
+double integral(func_t f, double a, double b, double eps2);

@@ -4,5 +4,4 @@
 !*.asm
 !Makefile
 !.gitignore
-
-
+!test/
