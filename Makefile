@@ -10,6 +10,7 @@ main.o: main.c
 	gcc $(CFLAGS) -o main.o main.c
 
 main.c: functions.h root.h integral.h
+	touch main.c
 
 functions.o: functions.asm
 	nasm -f elf32 -o functions.o functions.asm
@@ -17,8 +18,14 @@ functions.o: functions.asm
 root.o: root.c
 	gcc $(CFLAGS) -o root.o root.c
 
+root.c: main.h
+	touch root.c
+
 integral.o: integral.c
 	gcc $(CFLAGS) -o integral.o integral.c
+
+integral.c: main.h
+	touch integral.c
 
 test_root:
 	gcc $(CFLAGS) -g root.c -o test/root.o
@@ -29,7 +36,7 @@ test_integral:
 	gcc -m32 -g -o test/test_integral test/test_integral.c test/integral.o -lm
 
 debug/debug_main: debug/main_d.o debug/functions_d.o debug/root_d.o debug/integral_d.o
-	gcc -no-pie -m32 -o debug/debug_main debug/main_d.o debug/functions_d.o
+	gcc -no-pie -m32 -o debug/debug_main debug/main_d.o debug/functions_d.o debug/root_d.o
 
 debug/main_d.o: main.c
 	gcc $(CFLAGS) -g -o debug/main_d.o main.c
