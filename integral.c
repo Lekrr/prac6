@@ -66,13 +66,15 @@ static void update_list(list *l, int n, double a, double b, func_t f){
 }
 
 static double calc(func_t f, double a, double b, int n, list *l){
-    double res = 0;
+    double res = l->value + 4 * l->next->value;
+    l = l->next->next;
     n >>= 1;
 
-    for(int i = 0; i < n; i++){
-        res += l->value + 4 * l->next->value + l->next->next->value;
+    for(int i = 1; i <= n - 1; i++){
+        res += 2 * l->value + 4 * l->next->value;
         l = l->next->next;
     }
+    res += l->value;
     res *= (b - a);
     res /= 6 * n;
 
