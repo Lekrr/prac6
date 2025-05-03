@@ -1,5 +1,7 @@
 #include "main.h"
 
+unsigned iter_cnt;
+
 static struct {
     func_t f;
     func_t g;
@@ -19,6 +21,7 @@ double root(func_t f, func_t f_der, func_t g, func_t g_der, double a, double b, 
 
     state.f = f; state.g = g;
     state.f_der = f_der; state.g_der = g_der;
+    iter_cnt = 0;
 
     double point = a, dir = 1;
     if (F(point) * F(point + eps1) < 0) return point;
@@ -30,6 +33,7 @@ double root(func_t f, func_t f_der, func_t g, func_t g_der, double a, double b, 
     
     while(F(point) * F(point + eps1 * dir) > 0){
         point = point - F(point) / F_der(point);
+        iter_cnt++;
     }
 
     return point;
