@@ -9,7 +9,7 @@ $(TARGET): functions.o main.o root.o integral.o
 main.o: main.c
 	gcc $(CFLAGS) -o main.o main.c
 
-main.c: functions.h root.h integral.h
+main.c: functions.h root.h integral.h output.h
 	touch main.c
 
 functions.o: functions.asm
@@ -36,7 +36,7 @@ test_integral:
 	gcc -m32 -g -o test/test_integral test/test_integral.c test/integral.o -lm
 
 debug/debug_main: debug/main_d.o debug/functions_d.o debug/root_d.o debug/integral_d.o
-	gcc -no-pie -m32 -o debug/debug_main debug/main_d.o debug/functions_d.o debug/root_d.o
+	gcc -no-pie -m32 -o debug/debug_main debug/main_d.o debug/functions_d.o debug/root_d.o debug/integral_d.o
 
 debug/main_d.o: main.c
 	gcc $(CFLAGS) -g -o debug/main_d.o main.c
