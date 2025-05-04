@@ -3,8 +3,8 @@ TARGET = main
 
 all: $(TARGET)
 
-$(TARGET): functions.o main.o root.o integral.o
-	gcc -no-pie -m32 -o $(TARGET) main.o functions.o root.o integral.o
+$(TARGET): functions.o main.o root.o integral.o test_integral.o test_root.o
+	gcc -no-pie -m32 -o $(TARGET) main.o functions.o root.o integral.o test_root.o test_integral.o -lm
 
 main.o: main.c
 	gcc $(CFLAGS) -o main.o main.c
@@ -27,13 +27,17 @@ integral.o: integral.c
 integral.c: main.h
 	touch integral.c
 
-test_root:
-	gcc $(CFLAGS) -g root.c -o test/root.o
-	gcc -m32 -g -o test/test_root test/test_root.c test/root.o -lm
+test_integral.o: test_integral.c
+	gcc $(CFLAGS) -o test_integral.o test_integral.c
 
-test_integral:
-	gcc $(CFLAGS) -g integral.c -o test/integral.o
-	gcc -m32 -g -o test/test_integral test/test_integral.c test/integral.o -lm
+test_integral.c: integral.h
+	touch test_integral.c
+
+test_root.o: test_root.c
+	gcc $(CFLAGS) -o test_root.o test_root.c
+
+test_root.c: root.h
+	touch test_root.c
 
 debug/debug_main: debug/main_d.o debug/functions_d.o debug/root_d.o debug/integral_d.o
 	gcc -no-pie -m32 -o debug/debug_main debug/main_d.o debug/functions_d.o debug/root_d.o debug/integral_d.o
@@ -52,5 +56,4 @@ debug/integral_d.o: integral.c
 
 clean:
 	rm *.o $(TARGET)
-	rm test/test_integral test/test_root test/*.o
 	rm debug/*.o debug/debug_main

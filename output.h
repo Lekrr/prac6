@@ -5,7 +5,9 @@ Usage: ./main [options]\n\
 Options:\n\
     -help  Display this inforamtion\n\
     -a     Display the abscissa of intersection of functions\n\
-    -i     Display the number of iterations of intersection searching function\n";
+    -i     Display the number of iterations of root function\n\
+    -ti    Run program in testing mode for integral function\n\
+    -tr    Run program in testing mode for root function\n";
 
 void print_header(void){
     char *header = "\

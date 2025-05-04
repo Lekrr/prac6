@@ -4,6 +4,8 @@
 #include "root.h"
 #include "integral.h"
 #include "output.h"
+#include "test_integral.h"
+#include "test_root.h"
 
 static double eps1 = 0.001, eps2 = 0.001;
 
@@ -22,7 +24,13 @@ int main(int argc, char *argv[]){
         } else
         if(strcmp(argv[i], "-a") == 0){
             abscissas_print = 1;
-        }
+        } else
+        if(strcmp(argv[i], "-ti") == 0){
+            return test_integral();
+        } else
+        if(strcmp(argv[i], "-tr") == 0){
+            return test_root();
+        } 
     }
 
     double x1 = root(f1, f1_der, f2, f2_der, -1, -0.2, eps1);
