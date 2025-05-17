@@ -3,6 +3,7 @@
 #include "integral.h"
 
 static double f1(double x){
+    
     return 1;
 }
 
@@ -22,19 +23,12 @@ static double f5(double x){
     return exp(x) + x * x - 4;
 }
 
+// provides prompt to seletc eps
 static double select_eps(void){
     double eps = 0.001;
     printf("Select epsilon: ");
     scanf("%lf", &eps);
     return eps;
-    
-    // double eps = 0.001;
-    // printf("Select epsilon (default = 0.001): ");
-    // char c = getchar();
-    // if (c == '\n') return eps;
-    // ungetc(c, stdin);
-    // scanf("%lf", &eps);
-    // return eps;
 }
 
 static void test(func_t f, double eps, double a, double b, unsigned n, char *f_str){

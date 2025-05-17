@@ -75,10 +75,6 @@ f3:
     finit
     fld qword[ebp + 8] ; x
     fld1 ; 1 : x
-    fld1
-    fld1
-    fadd
-    fadd
     fadd ; x + 1
     fmul qword[.consts]
     fdiv qword[.consts + 8]

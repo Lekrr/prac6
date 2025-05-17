@@ -4,6 +4,7 @@ static double abs1(double x){
     return (x > 0) ? x : -x;
 }
 
+// calcaulate integral of f ob the interval [a, b] by dividing it into n parts
 static double calc(func_t f, double a, double b, int n){
 
     double delta = (b - a) / (2 * n);
@@ -19,15 +20,17 @@ static double calc(func_t f, double a, double b, int n){
     return res;
 }
 
+// calcaulate integral of f ob the interval [a, b] with the accuracy of eps2
 double integral(func_t f, double a, double b, double eps2){
 
-    int n = 20;
+    int n = 4;
 
     double res = calc(f, a, b, n);
     n *= 2;
     double new_res = calc(f, a, b, n);
     
-    while (abs1(res - new_res) >= eps2){
+    
+    while (abs1(res - new_res) / 15. >= eps2){
         res = new_res;
         n *= 2;
         new_res = calc(f, a, b, n);

@@ -66,6 +66,7 @@ static double g4_der(double x){
     return 2 * x;
 }
 
+// provides prompt to seletc eps
 static double select_eps(void){
     double eps = 0.001;
     printf("Select epsilon: ");

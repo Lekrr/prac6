@@ -1,5 +1,6 @@
 #include "main.h"
 
+// number of iterations
 unsigned iter_cnt;
 
 static struct {
@@ -17,6 +18,7 @@ static double F_der(double x){
     return state.f_der(x) - state.g_der(x);
 }
 
+// calculte intersaction of f and g with the accuracy of eps1
 double root(func_t f, func_t f_der, func_t g, func_t g_der, double a, double b, double eps1){
 
     state.f = f; state.g = g;
