@@ -1,12 +1,83 @@
 #include <stdio.h>
 #include <math.h>
-#include "../root.h"
-#include "test_root.h"
+#include "root.h"
 
-int main(void){
+static double f1(double x){
+    return exp(x) - 3;
+}
+
+static double f1_der(double x){
+    return exp(x);
+}
+
+static double g1(double x){
+    return -x * x - x + 5;
+}
+
+static double g1_der(double x){
+    return -2 * x - 1;
+}
+
+static double f2(double x){
+    return 1 / (x + 3) + 3;
+}
+
+static double f2_der(double x){
+    return -1 / ((x + 3) * (x + 3));
+}
+
+static double g2(double x){
+    return powf(2, x) - 2;
+}
+
+static double g2_der(double x){
+    return powf(2, x) * logf(2);
+}
+
+static double f3(double x){
+    return x*x*x + x*x - 2 * x + 4;
+}
+
+static double f3_der(double x){
+    return 3 * x*x  + 2 * x - 2;
+}
+
+static double g3(double x){
+    return 1 / (x - 0.5);
+}
+
+static double g3_der(double x){
+    return -1 / ((x - 0.5) * (x - 0.5));
+}
+
+static double f4(double x){
+    return sqrt(x + 4);
+}
+
+static double f4_der(double x){
+    return 1 / (2 * sqrt(x + 4));
+}
+
+static double g4(double x){
+    return x*x - 3;
+}
+
+static double g4_der(double x){
+    return 2 * x;
+}
+
+// provides prompt to seletc eps
+static double select_eps(void){
+    double eps = 0.001;
+    printf("Select epsilon: ");
+    scanf("%lf", &eps);
+    return eps;
+}
+
+int test_root(void){
 
     char *sep = "\n-----------------------------------\n\n";
-    double x, eps = 0.001;
+    double x, eps = select_eps();
 
     printf("Test #1\n");
     printf("f(x) = e^x - 3\ng(x) = -x^2 - x + 5\neps = %lf\n", eps);

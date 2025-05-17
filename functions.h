@@ -1,5 +1,8 @@
 #pragma once
 
-float f1(float x);
-float f2(float x);
-float f3(float x);
+double f1(double x);
+double f1_der(double x);
+double f2(double x);
+double f2_der(double x);
+double f3(double x);
+double f3_der(double x);

@@ -81,6 +81,7 @@ static double calc(func_t f, double a, double b, int n, list *l){
     return res;
 }
 
+// calcaulate integral of f ob the interval [a, b] with the accuracy of eps2
 double integral(func_t f, double a, double b, double eps2){
     free_buff.arr = NULL;
     int n = 20;
